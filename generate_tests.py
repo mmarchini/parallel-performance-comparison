@@ -30,10 +30,14 @@ os.makedirs("tests/matrix")
 for multiplier in [10, 50, 100, 500, 1000, 2500, 5000, 1000]:
     rows = multiplier*PROCESSES
     print rows
-    with open("tests/matrix/%d"%rows, "w") as f:
+    os.makedirs("tests/matrix/%d"%rows)
+    with open("tests/matrix/%d/A"%rows, "w") as A, open("tests/matrix/%d/B"%rows, "w") as B:
         for r in range(rows):
-            wrow = ",".join(["%d"%random.randrange(0, rows) for m in range(rows)])+"\n"
-            f.write(wrow)
+            Arow = ",".join(["%d"%random.randrange(0, rows) for m in range(rows)])+"\n"
+            A.write(Arow)
+
+            Brow = ",".join(["%d"%random.randrange(0, rows) for m in range(rows)])+"\n"
+            B.write(Brow)
 
 print "Queens"
 os.makedirs("tests/queens")
