@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 PROCESSES=$1;
 
 if [ -z "$PROCESSES" ]; then
@@ -13,7 +15,7 @@ if [ -d "tests" ]; then
     mv tests tests.bkp
 fi
 
-# ./generate_tests.py -p $PROCESSES
+./generate_tests.py -p $PROCESSES
 
 # GO TEST CASES #
 GO_SRC=go-benchmark/src

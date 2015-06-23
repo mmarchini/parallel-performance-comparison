@@ -27,7 +27,7 @@ for multiplier in [100, 500, 1000, 5000, 10000, 50000]:
 
 print "Matrix"
 os.makedirs("tests/matrix")
-for multiplier in [10, 50, 100, 500, 1000, 2500, 5000, 1000]:
+for multiplier in [10, 50, 100, 500, 1000, 2500, 5000, 10000]:
     rows = multiplier*PROCESSES
     print rows
     os.makedirs("tests/matrix/%d"%rows)
