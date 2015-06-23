@@ -1,0 +1,6 @@
+[submodule "go-benchmark"]
+	path = go-benchmark
+	url = git@github.com:mmarchini/go-benchmark
+[submodule "erlang-benchmark"]
+	path = erlang-benchmark
+	url = git@github.com:mmarchini/erlang-benchmark
