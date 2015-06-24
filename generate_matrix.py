@@ -19,7 +19,7 @@ random.seed(SEED)
 
 print "Matrix"
 os.makedirs("tests/matrix")
-for multiplier in [10, 30, 50, 70, 90, 110]:#, 5000, 10000]:
+for multiplier in [10, 20, 30, 40, 50, 60]:#, 5000, 10000]:
     rows = multiplier*PROCESSES
     print rows
     os.makedirs("tests/matrix/%d"%rows)
