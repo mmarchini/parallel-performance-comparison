@@ -16,7 +16,7 @@ mkdir -p results/go/sequential
 mkdir -p results/go/parallel
 # queensProblem 
 echo "Starting queens problem profiling"
-for test_casein $(ls tests/queens/); do
+for test_case in $(ls tests/queens/); do
     # Sequential queens Problem 
     echo "Running sequential queens problem $test_case"
     go run $GO_SRC/queensProblem.go $test_case 100 results/go/sequential/queens_$test_case
@@ -36,7 +36,7 @@ mkdir -p results/erlang/parallel/queens/
 echo "Starting queens problem profiling"
 erlc -o . $ERL_SRC/queensProblem.erl
 erlc -o . $ERL_SRC/parallelQueensProblem.erl
-for test_casein $(ls tests/queens/); do
+for test_case in $(ls tests/queens/); do
     # Sequential queensProblem 
     echo "Running sequential queens problem $test_case"
     erl -noshell -s queensProblem test_loop $test_case 100 results/erlang/sequential/queens/$test_case

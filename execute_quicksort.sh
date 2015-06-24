@@ -17,7 +17,7 @@ mkdir -p results/go/parallel
 
 # QuickSort
 echo "Starting quick sort profiling"
-for test_casein $(ls tests/qsort/); do
+for test_case in $(ls tests/qsort/); do
     # Sequential quickSort
     echo "Running sequential quick sort $test_case"
     go run $GO_SRC/quickSort.go tests/qsort/$test_case 100 results/go/sequential/quickSort_$test_case
@@ -37,7 +37,7 @@ mkdir -p results/erlang/parallel/qsort/
 echo "Starting quick sort profiling"
 erlc -o . $ERL_SRC/quickSort.erl
 erlc -o . $ERL_SRC/parallelQuickSort.erl
-for test_casein $(ls tests/qsort/); do
+for test_case in $(ls tests/qsort/); do
     # Sequential quick sort 
     echo "Running sequential quickSort $test_case"
     erl -noshell -s quickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case

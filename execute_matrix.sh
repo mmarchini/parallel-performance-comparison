@@ -17,7 +17,7 @@ mkdir -p results/go/sequential/matrix/
 mkdir -p results/go/parallel/matrix/
 # matrixMultiplication 
 echo "Starting matrix multiplication profiling"
-for test_casein $(ls tests/matrix/); do
+for test_case in $(ls tests/matrix/); do
     # Sequential matrixMultiplication 
     echo "Running sequential matrix multiplication $test_case"
     go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B 100 results/go/sequential/matrix/$test_case
@@ -37,7 +37,7 @@ mkdir -p results/erlang/parallel/matrix/
 echo "Starting matrix multiplication profiling"
 erlc -o . $ERL_SRC/matrixMultiplication.erl
 erlc -o . $ERL_SRC/parallelMatrixMultiplication.erl
-for test_casein $(ls tests/matrix/); do
+for test_case in $(ls tests/matrix/); do
     # Sequential matrixMultiplication 
     echo "Running sequential matrix multiplication $test_case"
     erl -noshell -s matrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B 100 results/erlang/sequential/matrix/$test_case
