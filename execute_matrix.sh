@@ -3,9 +3,13 @@
 set -e
 
 PROCESSES=$1;
+LOOP=$2;
 
 if [ -z "$PROCESSES" ]; then
     PROCESSES=4
+fi
+if [ -z "$LOOP" ]; then
+    LOOP=100
 fi
 
 ./generate_matrix.py -p $PROCESSES
@@ -20,11 +24,11 @@ echo "Starting matrix multiplication profiling"
 for test_case in $(ls tests/matrix/); do
     # Sequential matrixMultiplication 
     echo "Running sequential matrix multiplication $test_case"
-    go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B 100 results/go/sequential/matrix/$test_case
+    go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B $LOOP results/go/sequential/matrix/$test_case
 
     # Parallel matrixMultiplication 
     echo "Running parallel matrix multiplication $test_case"
-    go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES 100 results/go/parallel/matrix/$test_case
+    go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES $LOOP results/go/parallel/matrix/$test_case
 done
 echo "Matrix multiplication profiling finished"
 
@@ -40,11 +44,11 @@ erlc -o . $ERL_SRC/parallelMatrixMultiplication.erl
 for test_case in $(ls tests/matrix/); do
     # Sequential matrixMultiplication 
     echo "Running sequential matrix multiplication $test_case"
-    erl -noshell -s matrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B 100 results/erlang/sequential/matrix/$test_case -s init stop
+    erl -noshell -s matrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B $LOOP results/erlang/sequential/matrix/$test_case -s init stop
 
     # Parallel matrixMultiplication 
     echo "Running parallel matrix multiplication $test_case"
-    erl -noshell -s parallelMatrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES 100 results/erlang/parallel/matrix/$test_case -s init stop
+    erl -noshell -s parallelMatrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES $LOOP results/erlang/parallel/matrix/$test_case -s init stop
 done
 rm matrixMultiplication.beam
 rm parallelMatrixMultiplication.beam
