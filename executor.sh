@@ -4,9 +4,9 @@ set -e
 
 LOOP=10;
 
-PROCESSES_MATRIX=$1 $LOOP;
-PROCESSES_QUEENS=$2 $LOOP;
-PROCESSES_QUICKS=$3 $LOOP;
+PROCESSES_MATRIX=$1;
+PROCESSES_QUEENS=$2;
+PROCESSES_QUICKS=$3;
 
 if [ -z "$PROCESSES_MATRIX" ]; then
     PROCESSES_MATRIX=4
@@ -25,7 +25,7 @@ if [ -d "tests" ]; then
     mv tests tests.bkp
 fi
 
-./execute_matrix.sh $PROCESSES_MATRIX
-./execute_queens.sh $PROCESSES_QUEENS
-./execute_quicksort.sh $PROCESSES_QUICKS
+./execute_matrix.sh $PROCESSES_MATRIX $LOOP
+./execute_queens.sh $PROCESSES_QUEENS $LOOP
+./execute_quicksort.sh $PROCESSES_QUICKS $LOOP
 
