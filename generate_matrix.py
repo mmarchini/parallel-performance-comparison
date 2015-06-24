@@ -17,17 +17,9 @@ print "SEED:", SEED
 
 random.seed(SEED)
 
-print "Quick sort"
-os.makedirs("tests/qsort")
-for multiplier in [100, 500, 1000, 5000, 10000, 50000]:
-    length = multiplier*PROCESSES
-    print length
-    with open("tests/qsort/%d"%length, "w") as f:
-        f.writelines(["%d\n"%random.randrange(0, length) for m in range(length)])
-
 print "Matrix"
 os.makedirs("tests/matrix")
-for multiplier in [10, 50, 100, 500, 1000, 2500, 5000, 10000]:
+for multiplier in [10, 50, 100, 500, 1000, 2500]:#, 5000, 10000]:
     rows = multiplier*PROCESSES
     print rows
     os.makedirs("tests/matrix/%d"%rows)
@@ -38,11 +30,4 @@ for multiplier in [10, 50, 100, 500, 1000, 2500, 5000, 10000]:
 
             Brow = ",".join(["%d"%random.randrange(0, rows) for m in range(rows)])+"\n"
             B.write(Brow)
-
-print "Queens"
-os.makedirs("tests/queens")
-for multiplier in [1, 2, 3, 4]:
-    size = multiplier*PROCESSES
-    print size
-    open("tests/queens/%d"%size, "w").close()
 
