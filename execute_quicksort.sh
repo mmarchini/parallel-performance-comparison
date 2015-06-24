@@ -8,14 +8,7 @@ if [ -z "$PROCESSES" ]; then
     PROCESSES=4
 fi
 
-if [ -d "results" ]; then
-    mv results results.bkp 
-fi
-if [ -d "tests" ]; then
-    mv tests tests.bkp
-fi
-
-./generate_tests.py -p $PROCESSES
+./generate_quicksort.py -p $PROCESSES
 
 # GO TEST CASES #
 GO_SRC=go-benchmark/src
