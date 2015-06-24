@@ -19,7 +19,7 @@ random.seed(SEED)
 
 print "Quick sort"
 os.makedirs("tests/qsort")
-for multiplier in [100, 500, 1000, 5000, 10000, 50000]:
+for multiplier in [250, 500, 750, 1000, 1250, 1500]:
     length = multiplier*PROCESSES
     print length
     with open("tests/qsort/%d"%length, "w") as f:

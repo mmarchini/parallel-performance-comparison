@@ -13,19 +13,19 @@ fi
 # GO TEST CASES #
 echo "Go testing"
 GO_SRC=go-benchmark/src
-mkdir -p results/go/sequential
-mkdir -p results/go/parallel
+mkdir -p results/go/sequential/qsort
+mkdir -p results/go/parallel/qsort
 
 # QuickSort
 echo "Starting quick sort profiling"
 for test_case in $(ls tests/qsort/); do
     # Sequential quickSort
     echo "Running sequential quick sort $test_case"
-    go run $GO_SRC/quickSort.go tests/qsort/$test_case 100 results/go/sequential/quickSort_$test_case
+    go run $GO_SRC/quickSort.go tests/qsort/$test_case 100 results/go/sequential/qsort/$test_case
 
     # Parallel quickSort
     echo "Running parallel quick sort $test_case"
-    go run $GO_SRC/parallelQuickSort.go tests/qsort/$test_case 100 results/go/parallel/quickSort_$test_case
+    go run $GO_SRC/parallelQuickSort.go tests/qsort/$test_case 100 results/go/parallel/qsort/$test_case
 done
 echo "Quick sort profiling finished"
 
@@ -45,7 +45,7 @@ for test_case in $(ls tests/qsort/); do
 
     # Parallel quick sort 
     echo "Running parallel quick sort $test_case"
-    erl -noshell -s parallelQuickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case -s init stop
+    erl -noshell -s parallelQuickSort test_loop tests/qsort/$test_case 100 results/erlang/parallel/qsort/$test_case -s init stop
 done
 rm quickSort.beam 
 rm parallelQuickSort.beam 

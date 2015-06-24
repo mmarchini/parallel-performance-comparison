@@ -44,7 +44,7 @@ for test_case in $(ls tests/matrix/); do
 
     # Parallel matrixMultiplication 
     echo "Running parallel matrix multiplication $test_case"
-    erl -noshell -s matrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES 100 results/erlang/sequential/matrix/$test_case -s init stop
+    erl -noshell -s parallelMatrixMultiplication test_loop tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES 100 results/erlang/parallel/matrix/$test_case -s init stop
 done
 rm matrixMultiplication.beam
 rm parallelMatrixMultiplication.beam
