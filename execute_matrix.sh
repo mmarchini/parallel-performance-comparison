@@ -28,7 +28,7 @@ for test_case in $(ls tests/matrix/); do
 
     # Parallel matrixMultiplication 
     echo "Running parallel matrix multiplication $test_case"
-    go run $GO_SRC/matrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES $LOOP results/go/parallel/matrix/$test_case
+    go run $GO_SRC/parallelMatrixMultiplication.go tests/matrix/$test_case/A tests/matrix/$test_case/B $PROCESSES $LOOP results/go/parallel/matrix/$test_case
 done
 echo "Matrix multiplication profiling finished"
 

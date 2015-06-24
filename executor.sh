@@ -29,3 +29,5 @@ fi
 ./execute_queens.sh $PROCESSES_QUEENS $LOOP
 ./execute_quicksort.sh $PROCESSES_QUICKS $LOOP
 
+./compile_results.py
+
