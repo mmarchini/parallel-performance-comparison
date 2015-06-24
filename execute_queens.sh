@@ -11,6 +11,7 @@ fi
 ./generate_queens.py -p $PROCESSES
 
 # GO TEST CASES #
+echo "Go testing"
 GO_SRC=go-benchmark/src
 mkdir -p results/go/sequential
 mkdir -p results/go/parallel
@@ -39,11 +40,11 @@ erlc -o . $ERL_SRC/parallelQueensProblem.erl
 for test_case in $(ls tests/queens/); do
     # Sequential queensProblem 
     echo "Running sequential queens problem $test_case"
-    erl -noshell -s queensProblem test_loop $test_case 100 results/erlang/sequential/queens/$test_case
+    erl -noshell -s queensProblem test_loop $test_case 100 results/erlang/sequential/queens/$test_case -s init stop
 
     # Parallel queens 
     echo "Running parallel queens problem $test_case"
-    erl -noshell -s parallelQueensProblem test_loop $test_case $PROCESSES 100 results/erlang/sequential/queens/$test_case
+    erl -noshell -s parallelQueensProblem test_loop $test_case $PROCESSES 100 results/erlang/sequential/queens/$test_case -s init stop
 done
 rm queensProblem.beam 
 rm parallelQueensProblem.beam 

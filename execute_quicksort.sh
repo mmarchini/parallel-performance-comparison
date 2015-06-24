@@ -11,6 +11,7 @@ fi
 ./generate_quicksort.py -p $PROCESSES
 
 # GO TEST CASES #
+echo "Go testing"
 GO_SRC=go-benchmark/src
 mkdir -p results/go/sequential
 mkdir -p results/go/parallel
@@ -40,11 +41,11 @@ erlc -o . $ERL_SRC/parallelQuickSort.erl
 for test_case in $(ls tests/qsort/); do
     # Sequential quick sort 
     echo "Running sequential quickSort $test_case"
-    erl -noshell -s quickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case
+    erl -noshell -s quickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case -s init stop
 
     # Parallel quick sort 
     echo "Running parallel quick sort $test_case"
-    erl -noshell -s parallelQuickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case
+    erl -noshell -s parallelQuickSort test_loop tests/qsort/$test_case 100 results/erlang/sequential/qsort/$test_case -s init stop
 done
 rm quickSort.beam 
 rm parallelQuickSort.beam 
