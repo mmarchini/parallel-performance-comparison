@@ -19,7 +19,7 @@ random.seed(SEED)
 
 print "Queens"
 os.makedirs("tests/queens")
-for multiplier in [1, 2, 3, 4]:
+for multiplier in [1, 2, 3]:
     size = multiplier*PROCESSES
     print size
     open("tests/queens/%d"%size, "w").close()
