@@ -29,7 +29,7 @@ for test_case in $(ls tests/qsort/); do
 
     # Parallel quickSort
     echo "Running parallel quick sort $test_case"
-    go run $GO_SRC/parallelQuickSort.go tests/qsort/$test_case $LOOP results/go/parallel/qsort/$test_case
+    go run $GO_SRC/parallelQuickSort.go tests/qsort/$test_case $PROCESSES $LOOP results/go/parallel/qsort/$test_case
 done
 echo "Quick sort profiling finished"
 
